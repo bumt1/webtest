@@ -22,6 +22,12 @@ end
 
 -- Command listener for chat messages
 Players.PlayerAdded:Connect(function(player)
+    -- Announce "ready" 5 times when the player joins and script is executed
+    for i = 1, 5 do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("ready", "All")
+    end
+    
+    -- Chat listener for commands
     player.Chatted:Connect(function(message)
         if message == "!follow" and isCommander(player) then
             local commanderPlayer = Players:FindFirstChild(commander)
@@ -37,7 +43,8 @@ Players.PlayerAdded:Connect(function(player)
                 end
             end
         elseif message == "!test" and isCommander(player) then
-            player:Chat("Your private bot is ready.")
+            -- Send the message in public chat
+            game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Your private bot is ready.", "All")
         end
     end)
 end)
