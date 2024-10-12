@@ -3,7 +3,7 @@ local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
 
 -- The player who can execute the commands
-local commander = "speedkitbw2"
+local commander = "speedkitbw1"
 local isFollowing = false
 
 -- Check for valid command sender
